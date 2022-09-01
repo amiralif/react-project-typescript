@@ -1,0 +1,17 @@
+// LOGIN
+export const LOGIN_IN_PROGRESS = "LOGIN_IN_PROGRESS";
+export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
+export const LOGIN_FAILED = "LOGIN_FAILED";
+export const LOGOUT = "LOGOUT";
+
+// REGISTER
+export const REGISTER_IN_PROGRESS = "REGISTER_IN_PROGRESS";
+export const REGISTER_SUCCESS = "REGISTER_SUCCESS";
+export const REGISTER_FAILED = "REGISTER_FAILED";
+
+// MOVIE
+export const MOVIE_LIST = "MOVIE_LIST";
+export const VIEW_MOVIE = "VIEW_MOVIE";
+export const CREATE_MOVIE = "CREATE_MOVIE";
+export const DELETE_MOVIE = "DELETE_MOVIE";
+export const UPDATE_MOVIE = "UPDATE_MOVIE";

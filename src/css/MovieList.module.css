@@ -1,0 +1,69 @@
+@import url(http://fonts.googleapis.com/css?family=Calibri:400,300,700);
+
+.card {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 0px solid transparent;
+  border-radius: 10px;
+}
+.movie_widgets {
+  position: relative;
+}
+
+.movie_widgets .movies_row {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.112);
+  padding: 14px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  border-radius: 10px;
+  transition: all 0.5s;
+}
+
+.w_100 {
+  width: 100% !important;
+}
+.m_b_15 {
+  margin-bottom: 15px;
+}
+
+.btn_sm {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.76563rem;
+  line-height: 1.5;
+  border-radius: 10px;
+}
+.movies_footer {
+  position: relative;
+}
+.movie_widgets .movies_row:hover {
+  background: rgba(0, 0, 0, 0.16);
+}
+.btn_parent {
+  position: absolute;
+  top: -30px;
+  right: 20px;
+}
+.description {
+  line-height: 40px;
+  border: 1px solid black;
+  padding: 5px;
+  box-shadow: 0px 0px 400px -28px rgba(0, 0, 0, 0.356) inset;
+  -webkit-box-shadow: 0px 0px 400px -28px rgba(0, 0, 0, 0.356) inset;
+  -moz-box-shadow: 0px 0px 400px -28px rgba(0, 0, 0, 0.356) inset;
+}
+.movieName {
+  text-align: center;
+  font-weight: bolder;
+  font-size: larger;
+}

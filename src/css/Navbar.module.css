@@ -1,0 +1,19 @@
+@import url(http://fonts.googleapis.com/css?family=Calibri:400,300,700);
+
+.card {
+  border-radius: 10px;
+  height: 65px;
+  line-height: 37px;
+}
+
+.widgets {
+  position: relative;
+}
+
+.widgets .navRow {
+  padding: 14px;
+}
+
+.navText {
+  vertical-align: middle;
+}

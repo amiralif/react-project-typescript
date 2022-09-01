@@ -1,0 +1,184 @@
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css");
+* {
+  box-sizing: border-box;
+}
+body {
+  font-family: "Montserrat", sans-serif;
+  margin: 0;
+  padding: 0;
+}
+.authH1 {
+  font-size: xx-large !important;
+}
+.authInput {
+  font-family: "Montserrat", sans-serif !important;
+  font-size: initial !important;
+  line-height: initial !important;
+}
+.wrapper {
+  width: 100%;
+  height: 97vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #ebecf0;
+  overflow: hidden;
+}
+.container {
+  border-radius: 10px;
+  box-shadow: -5px -5px 10px #fff, 5px 5px 10px #babebc;
+  position: absolute;
+  width: 768px;
+  min-height: 480px;
+  overflow: hidden;
+}
+.form {
+  background: #ebecf0;
+  display: flex;
+  flex-direction: column;
+  padding: 0 50px;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+}
+.form input {
+  background: #eee !important;
+  padding: 16px !important;
+  margin: 8px 0 !important;
+  width: 85% !important;
+  border: 0 !important;
+  outline: none !important;
+  border-radius: 20px !important;
+  box-shadow: inset 7px 2px 10px #babebc, inset -5px -5px 12px #fff !important;
+}
+.authButton {
+  border-radius: 20px !important;
+  border: none !important;
+  outline: none !important;
+  font-size: 12px !important;
+  font-weight: bold !important;
+  padding: 15px 45px !important;
+  margin: 14px !important;
+  letter-spacing: 1px !important;
+  text-transform: uppercase !important;
+  cursor: pointer !important;
+  transition: transform 80ms ease-in !important;
+}
+.form_btn {
+  box-shadow: -5px -5px 10px #fff, 5px 5px 8px #babebc;
+}
+.form_btn:active {
+  box-shadow: inset 1px 1px 2px #babebc, inset -1px -1px 2px #fff;
+}
+.overlay_btn {
+  background-color: #ff4b2b;
+  color: #fff;
+  box-shadow: -5px -5px 10px #ff6b3f, 5px 5px 8px #bf4b2b;
+}
+.sign_in_container {
+  position: absolute;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  transition: all 0.5s;
+}
+.sign_up_container {
+  position: absolute;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  opacity: 0;
+  transition: all 0.5s;
+}
+.overlay_left {
+  display: flex;
+  flex-direction: column;
+  padding: 0 10%;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  right: 0;
+  width: 50%;
+  height: 100%;
+  opacity: 0;
+  background-color: #ff4b2b;
+  color: #fff;
+  transition: all 0.5s;
+}
+.overlay_right {
+  display: flex;
+  flex-direction: column;
+  padding: 0 10%;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  right: 0;
+  width: 50%;
+  height: 100%;
+  background-color: #ff4b2b;
+  color: #fff;
+  transition: all 0.5s;
+}
+.container.right_panel_active .sign_in_container {
+  transform: translateX(100%);
+  opacity: 0;
+}
+.container.right_panel_active .sign_up_container {
+  transform: translateX(100%);
+  opacity: 1;
+  z-index: 2;
+}
+.container.right_panel_active .overlay_right {
+  transform: translateX(-100%);
+  opacity: 0;
+}
+.container.right_panel_active .overlay_left {
+  transform: translateX(-100%);
+  opacity: 1;
+  z-index: 2;
+}
+.social_links {
+  margin: 20px 0;
+}
+.form h1 {
+  font-weight: bold !important;
+  margin: 0 !important;
+  color: #000 !important;
+}
+
+.authP {
+  font-size: 16px !important;
+  font-weight: bold !important;
+  letter-spacing: 0.5px !important;
+  margin: 20px 0 30px !important;
+}
+.authspan {
+  font-size: 12px !important;
+  color: #000 !important;
+  letter-spacing: 0.5px !important;
+  margin-bottom: 10px !important;
+}
+.social_Links_div {
+  width: 40px;
+  height: 40px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 5px;
+  border-radius: 50%;
+  box-shadow: -5px -5px 10px #fff, 5px 5px 8px #babebc;
+  cursor: pointer;
+}
+.social_Links_a {
+  color: #000;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  line-height: 40px;
+}
+.social_Links_div:active {
+  box-shadow: inset 1px 1px 2px #babebc, inset -1px -1px 2px #fff;
+}
+.social_Links_a:hover {
+  color: #ff4b2b;
+}
