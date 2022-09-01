@@ -1,0 +1,46 @@
+{
+  "movies": [
+    {
+      "name": "star wars",
+      "description": "Star Wars is an American epic space-opera[1] multimedia franchise created by George Lucas, which began with the eponymous 1977 film[b] and quickly became a worldwide pop-culture phenomenon. The franchise has been expanded into various films and other media, including television series, video games, novels, comic books, theme park attractions, and themed areas, comprising an all-encompassing fictional universe.[c] In 2020, its total value was estimated at US$70 billion, and it is currently the fifth-highest-grossing media franchise of all time.",
+      "creator": "bruno@email.com",
+      "releaseDate": [
+        "1997-08-07T20:37:00.000Z"
+      ],
+      "movieGenre": "Action",
+      "createDate": "Aug ,31",
+      "id": 1
+    },
+    {
+      "name": "dororo",
+      "description": "asdadasdasd",
+      "creator": "bruno@email.com",
+      "releaseDate": [
+        "2022-08-11T21:23:00.000Z"
+      ],
+      "movieGenre": "Action",
+      "createDate": "Aug 31 , 2022",
+      "id": 2
+    },
+    {
+      "name": "avengers",
+      "description": " asdasdasdasdasfdasf",
+      "creator": "bruno@email.com",
+      "releaseDate": [
+        "2022-08-26T21:24:00.000Z"
+      ],
+      "movieGenre": "Action",
+      "createDate": "Aug 31 , 2022",
+      "id": 3
+    },
+    {
+      "name": "dororo",
+      "description": " asdadasddasd",
+      "creator": "bruno@email.com",
+      "releaseDate": "2022-08-30T21:27:54.924Z",
+      "movieGenre": "Action",
+      "createDate": "Aug 31 , 2022",
+      "id": 4
+    }
+  ]
+}
