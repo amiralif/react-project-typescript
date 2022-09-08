@@ -10,11 +10,11 @@ import {
 } from "../../services/moviesApi";
 
 const UpdateMovieComponent = () => {
-  const { movieId }: any = useParams();
+  const { movieId } = useParams();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
 
-  const { data: editMovie, isSuccess } = useMovieQuery(movieId);
+  const editMovie = useMovieQuery(movieId);
 
   const [updateMovie] = useUpdateMovieMutation();
 
@@ -29,6 +29,7 @@ const UpdateMovieComponent = () => {
       closeButton: true,
       progress: undefined,
     });
+    editMovie.refetch();
     navigate("/movies");
   };
 
@@ -58,16 +59,16 @@ const UpdateMovieComponent = () => {
   };
 
   const formSubmit = async (
-    name: any,
-    descriptions: any,
-    movieGenre: any,
-    releaseDate: any
+    name: string,
+    description: string,
+    movieGenre: string,
+    releaseDate: Date | string
   ) => {
     setLoading(true);
     const movie = {
       movieId,
       name,
-      descriptions,
+      description,
       movieGenre,
       releaseDate,
     };
@@ -82,13 +83,15 @@ const UpdateMovieComponent = () => {
   return loading ? (
     <Loading />
   ) : (
-    <MovieFrom
-      name={editMovie && editMovie.name}
-      description={editMovie && editMovie.description}
-      genre={editMovie && editMovie.movieGenre}
-      releaseDate={editMovie && editMovie.releaseDate}
-      onFormSubmit={formSubmit}
-    />
+    editMovie.data && editMovie.isSuccess && (
+      <MovieFrom
+        name={editMovie.data && editMovie.data.name}
+        description={editMovie.data && editMovie.data.description}
+        genre={editMovie.data && editMovie.data.movieGenre}
+        releaseDate={editMovie.data && editMovie.data.releaseDate}
+        onFormSubmit={formSubmit}
+      />
+    )
   );
 };
 

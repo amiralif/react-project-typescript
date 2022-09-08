@@ -1,4 +1,4 @@
-import { Link, useNavigate  } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import classes from "../css/Navbar.module.css";
 import { useDispatch } from "react-redux";
 
@@ -6,10 +6,10 @@ import { logout } from "../features/loginSlice";
 
 const Navbar = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate ();
+  const navigate = useNavigate();
 
   const logOut = () => {
-    dispatch(logout(""));
+    dispatch(logout("normal"));
     navigate("/");
   };
   return (

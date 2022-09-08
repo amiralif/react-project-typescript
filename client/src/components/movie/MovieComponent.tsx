@@ -4,7 +4,7 @@ import { useMovieQuery } from "../../services/moviesApi";
 import classes from "../../css/MovieList.module.css";
 
 const MovieComponent = () => {
-  const { movieId }: any = useParams();
+  const { movieId } = useParams();
   const { data, isSuccess } = useMovieQuery(movieId);
 
   const movieContainer = () => {

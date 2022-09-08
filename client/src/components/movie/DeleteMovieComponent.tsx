@@ -1,5 +1,5 @@
 import { useState } from "react";
-import ReactModal from "react-modal";
+import ReactModal, { Styles } from "react-modal";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
@@ -11,7 +11,6 @@ import { toast } from "react-toastify";
 import Loading from "../Loading";
 import Modal from "react-modal";
 
-
 const DeleteMovieComponent = () => {
   const navigate = useNavigate();
 
@@ -20,10 +19,9 @@ const DeleteMovieComponent = () => {
   const [loading, setLoading] = useState(false);
   const [isModalOpen, setModalOpen] = useState(true);
 
-  const { movieId }:any = useParams();
+  const { movieId } = useParams();
   const { data, isSuccess } = useMovieQuery(movieId);
 
-  
   const onSuccess = () => {
     setLoading(false);
     toast.warning("Movie DELETED!", {
@@ -37,7 +35,7 @@ const DeleteMovieComponent = () => {
     });
     navigate("/movies");
   };
-  const onError = (e:any) => {
+  const onError = (e: any) => {
     setLoading(false);
     if (e.message === "Network Error") {
       toast.error(e.message, {
@@ -78,7 +76,7 @@ const DeleteMovieComponent = () => {
     navigate("/movies");
   };
 
-  const customStyle:any = {
+  const customStyle: Styles = {
     overlay: { zIndex: 1000 },
     content: {
       width: "30%",

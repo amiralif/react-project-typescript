@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Id, toast } from "react-toastify";
+import { Id, toast, ToastItem } from "react-toastify";
 import classes from "./Authenticate.module.css";
 import { useDispatch, useSelector } from "react-redux";
 // import { register, login } from "../../store";
@@ -18,7 +18,7 @@ function Authenticate() {
   const [passwordConf, setPasswordConf] = useState("");
   const [isLoading, setLoading] = useState(false);
 
-  const toastIdRegister: any = React.useRef(null);
+  const toastIdRegister= React.useRef<Id|null>(null);
 
   const dispatch: AppDispatch = useDispatch();
 
@@ -88,7 +88,7 @@ function Authenticate() {
 
   useEffect(() => {
     if (registerStatus === "success") {
-      toast.update(toastIdRegister.current, {
+      toast.update(toastIdRegister.current||"", {
         render: "REGISTERED SUCCESSFULLY!",
         type: "success",
         autoClose: 2000,
@@ -103,7 +103,7 @@ function Authenticate() {
       buttonHandle();
     }
     if (registerStatus === "failed") {
-      toast.update(toastIdRegister.current, {
+      toast.update(toastIdRegister.current||"", {
         render: registerData,
         type: "error",
         delay: 1000,

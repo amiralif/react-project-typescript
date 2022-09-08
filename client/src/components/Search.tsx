@@ -1,12 +1,9 @@
 import { useState } from "react";
 import classes from "../css/Navbar.module.css";
 
-interface PropsType {
-  search: (value: string) => {};
-}
 
-const Search = (props: any) => {
-  const [value, setValue] = useState("");
+const Search = (props: { search: (value: string) => void,val:string }) => {
+  const [value, setValue] = useState(props.val);
 
   return (
     <nav className="row d-flex justify-content-center container mt-2">

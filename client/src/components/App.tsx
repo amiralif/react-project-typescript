@@ -16,10 +16,13 @@ import NotFound from "./NotFound";
 import Navbar from "./Navbar";
 import Search from "./Search";
 import Loading from "./Loading";
+import { AppDispatch } from "../store";
 
 function App() {
-  const { status: loginData } = useSelector((store:any) => store.login);
-  const dispatch:any = useDispatch();
+  const { status: loginData } = useSelector(
+    (store: { login: { status: string } }) => store.login
+  );
+  const dispatch: AppDispatch = useDispatch();
   const [isSearch, setIsSearch] = useState(false);
   const [searchValue, setSearchValue] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -28,7 +31,7 @@ function App() {
     dispatch(checkAuthenticateStatus());
   }, [dispatch]);
 
-  const search = (value:any) => {
+  const search = (value: string) => {
     setIsLoading(true);
     if (!value || value === "") {
       setIsSearch(false);
@@ -51,9 +54,9 @@ function App() {
       return (
         <BrowserRouter>
           <Navbar />
-          <Search search={search} />
+          <Search search={search} val={searchValue} />
           <Routes>
-            <Route path="/" element={<Authenticate />}/>
+            <Route path="/" element={<Authenticate />} />
             {isLoading ? (
               <Route path="/movies" element={<Loading />}></Route>
             ) : (
@@ -67,12 +70,7 @@ function App() {
                 }
               ></Route>
             )}
-            <Route
-              path="/movies"
-              element={<MovieListComponent search={searchValue}
-              isSearch={isSearch}/>}
-              
-            ></Route>
+
             <Route path="/movie/:movieId" element={<MovieComponent />}></Route>
             <Route
               path="/movie/create"

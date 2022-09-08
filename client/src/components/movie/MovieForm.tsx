@@ -1,21 +1,33 @@
-import { useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import classes from "../../css/MovieList.module.css";
 import "flatpickr/dist/themes/material_green.css";
 import Flatpickr from "react-flatpickr";
 import { toast } from "react-toastify";
 
-const MovieForm = (props:any) => {
+const MovieForm = (props: {
+  name: string;
+  description: string;
+  genre: string;
+  releaseDate: Date | string;
+  onFormSubmit: (
+    movieName: string,
+    movieDescription: string,
+    movieGenre: string,
+    releaseDate: Date | string
+  ) => void;
+}) => {
   const [movieName, setMovieName] = useState(props.name);
   const [movieDescription, setDescription] = useState(props.description);
   const [movieGenre, setMovieGenre] = useState(
     props.genre ? props.genre : "none"
   );
 
-  const [releaseDate, setReleaseDate] = useState(
-    props.releaseDate ? props.releaseDate : new Date()
-  );
+  const [releaseDate, setReleaseDate]: [
+    string | Date,
+    Dispatch<SetStateAction<string | Date>>
+  ] = useState(props.releaseDate ? props.releaseDate : new Date());
 
-  const formSubmit = (e:any) => {
+  const formSubmit = (e: any) => {
     e.preventDefault();
     if (movieGenre === "none") {
       toast.error("Select Movie Genre", {
@@ -135,9 +147,11 @@ const MovieForm = (props:any) => {
                       required
                       id="releaseDate"
                       className="form-control form-control-lg"
-                      data-enable-time
                       value={releaseDate}
-                      onChange={setReleaseDate}
+                      onChange={(date) => {
+                        console.log(date[0]);
+                        setReleaseDate(date[0]);
+                      }}
                     />
                   </div>
 

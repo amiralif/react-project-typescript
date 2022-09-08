@@ -56,7 +56,7 @@ const CreateMovieComponent = () => {
     name: string,
     description: string,
     movieGenre: string,
-    releaseDate: string
+    releaseDate: Date | string
   ) => {
     setLoading(true);
     const months = [
@@ -95,7 +95,13 @@ const CreateMovieComponent = () => {
   return loading ? (
     <Loading />
   ) : (
-    <MovieForm name={""} description={""} onFormSubmit={onSubmit} />
+    <MovieForm
+      name={""}
+      description={""}
+      genre={""}
+      releaseDate={""}
+      onFormSubmit={onSubmit}
+    />
   );
 };
 
