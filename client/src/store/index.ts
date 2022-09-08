@@ -1,17 +1,17 @@
-import thunk from "redux-thunk";
-import { composeWithDevTools } from 'redux-devtools-extension';
-import { createStore, applyMiddleware, compose } from "redux";
+import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
+import loginReducer from "../features/loginSlice";
+import registerReducer from "../features/registerSlice";
+import { moviesApi } from "../services/moviesApi";
 
-import reducers from "./reducers";
+export const store = configureStore({
+  reducer: {
+    login: loginReducer,
+    register: registerReducer,
+    [moviesApi.reducerPath]: moviesApi.reducer,
+  },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(moviesApi.middleware),
+});
 
-// const composeEnhancers =
-//   (typeof window !== "undefined" &&
-//     window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) ||
-//   compose;
-const store = createStore(reducers, composeWithDevTools(applyMiddleware(thunk)));
-
-export * from "./action-creators/register";
-export * from "./action-creators/movie";
-export * from "./action-creators/login";
-
-export default store;
+export type AppDispatch = typeof store.dispatch;
+export type RootState = ReturnType<typeof store.getState>

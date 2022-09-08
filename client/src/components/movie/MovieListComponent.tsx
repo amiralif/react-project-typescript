@@ -1,24 +1,21 @@
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 
-import { movieList } from "../../store";
+import { useMoviesQuery } from "../../services/moviesApi";
 import classes from "../../css/MovieList.module.css";
 
 const MovieListComponent = (props:any) => {
-  const dispatch:any = useDispatch();
+  const { data } = useMoviesQuery(localStorage.getItem("token"));
+  const movieList = useMoviesQuery(localStorage.getItem("token"));
 
   const isSearch = props.isSearch;
   const searchValue = props.search;
 
-  let movies = useSelector((state:any) => state.movies);
-  movies = Object.values(movies);
-  console.log(movies)
-  let email = useSelector((state:any) => state.login.data.email);
-
   useEffect(() => {
-    dispatch(movieList());
-  }, [dispatch]);
+    movieList.refetch();
+  }, []);
+
+  let email = localStorage.getItem("email");
 
   const buttonHandler = (movie:any) => {
     if (movie.creator === email) {
@@ -63,7 +60,7 @@ const MovieListComponent = (props:any) => {
   };
   const MoviesList = () => {
     if (isSearch) {
-      return movies.map((movie:any) => (
+      return data?.map((movie:any) => (
         <div>
           
           {searchValue === movie.name ? (
@@ -91,7 +88,7 @@ const MovieListComponent = (props:any) => {
         </div>
       ));
     } else {
-      return movies.map((movie:any) => (
+      return data?.map((movie:any) => (
         <div
           key={movie.id}
           className={`d-flex flex-row ${classes.movies_row} m-t-0`}

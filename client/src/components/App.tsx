@@ -4,7 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
-import { checkAuthenticateStatus } from "../store";
+import { checkAuthenticateStatus } from "../features/loginSlice";
 
 import Authenticate from "./auth/Authenticate";
 import MovieListComponent from "./movie/MovieListComponent";
@@ -18,7 +18,7 @@ import Search from "./Search";
 import Loading from "./Loading";
 
 function App() {
-  const { data: loginData } = useSelector((store:any) => store.login);
+  const { status: loginData } = useSelector((store:any) => store.login);
   const dispatch:any = useDispatch();
   const [isSearch, setIsSearch] = useState(false);
   const [searchValue, setSearchValue] = useState("");
@@ -47,7 +47,7 @@ function App() {
   };
 
   const contentToShow = () => {
-    if (loginData) {
+    if (loginData === "success") {
       return (
         <BrowserRouter>
           <Navbar />

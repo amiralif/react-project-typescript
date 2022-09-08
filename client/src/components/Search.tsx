@@ -5,7 +5,7 @@ interface PropsType {
   search: (value: string) => {};
 }
 
-const Search = (props:any) => {
+const Search = (props: any) => {
   const [value, setValue] = useState("");
 
   return (

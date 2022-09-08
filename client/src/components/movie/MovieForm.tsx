@@ -1,6 +1,5 @@
 import { useState } from "react";
 import classes from "../../css/MovieList.module.css";
-// import DatePicker from "react-date-picker";
 import "flatpickr/dist/themes/material_green.css";
 import Flatpickr from "react-flatpickr";
 import { toast } from "react-toastify";

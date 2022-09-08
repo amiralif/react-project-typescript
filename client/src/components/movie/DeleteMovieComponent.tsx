@@ -1,28 +1,29 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import ReactModal from "react-modal";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
 
-import { deleteMovie, movieList } from "../../store";
+import {
+  useDeleteMovieMutation,
+  useMovieQuery,
+} from "../../services/moviesApi";
 import { toast } from "react-toastify";
 import Loading from "../Loading";
 import Modal from "react-modal";
 
+
 const DeleteMovieComponent = () => {
-  const dispatch:any = useDispatch();
   const navigate = useNavigate();
+
+  const [movieDelete] = useDeleteMovieMutation();
 
   const [loading, setLoading] = useState(false);
   const [isModalOpen, setModalOpen] = useState(true);
 
   const { movieId }:any = useParams();
-  const deletedMovie = useSelector((state:any) => state.movies[movieId]);
+  const { data, isSuccess } = useMovieQuery(movieId);
 
-  // useEffect(() => {
-  //   dispatch(movieList(movieId));
-  // }, [movieId, dispatch]);
-
+  
   const onSuccess = () => {
     setLoading(false);
     toast.warning("Movie DELETED!", {
@@ -61,9 +62,15 @@ const DeleteMovieComponent = () => {
     }
   };
 
-  const deleteBtn = () => {
+  const deleteBtn = async () => {
     setLoading(true);
-    dispatch(deleteMovie(movieId, onSuccess, onError));
+
+    try {
+      await movieDelete(movieId);
+      onSuccess();
+    } catch (e) {
+      onError(e);
+    }
   };
 
   const handleCloseModal = () => {
@@ -100,7 +107,7 @@ const DeleteMovieComponent = () => {
             </div>
             <div className="text-center mt-3">
               <span className="info-text">
-                Are you Sure to delete {deletedMovie && deletedMovie.name}
+                Are you Sure to delete {data && data.name}
               </span>
             </div>
             <div className="position-relative mt-3 form-input">

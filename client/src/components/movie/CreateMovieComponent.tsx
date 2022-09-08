@@ -1,7 +1,6 @@
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
 
-import { createMovie } from "../../store";
+import { useAddMovieMutation } from "../../services/moviesApi";
 
 import MovieForm from "./MovieForm";
 import { toast } from "react-toastify";
@@ -9,11 +8,12 @@ import { useState } from "react";
 import Loading from "../Loading";
 
 const CreateMovieComponent = () => {
-  const dispatch:any = useDispatch();
   const navigate = useNavigate();
+  const [addMovie] = useAddMovieMutation();
+
   const [loading, setLoading] = useState(false);
 
-  const onSuccess = ():void => {
+  const onSuccess = (): void => {
     setLoading(false);
     toast.success("Your Movie Added!", {
       autoClose: 3000,
@@ -27,7 +27,7 @@ const CreateMovieComponent = () => {
     navigate("/movies");
   };
 
-  const onError = (e:any) => {
+  const onError = (e: any) => {
     setLoading(false);
     if (e.message === "Network Error") {
       toast.error(e.message, {
@@ -52,18 +52,44 @@ const CreateMovieComponent = () => {
     }
   };
 
-  const onSubmit = (name:string, description:string, movieGenre:string, releaseDate:string) => {
+  const onSubmit = async (
+    name: string,
+    description: string,
+    movieGenre: string,
+    releaseDate: string
+  ) => {
     setLoading(true);
-    dispatch(
-      createMovie(
-        name,
-        description,
-        movieGenre,
-        releaseDate,
-        onSuccess,
-        onError
-      )
-    );
+    const months = [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec",
+    ];
+    const date = new Date();
+
+    const month = months[date.getMonth()];
+    const movie = {
+      name: name,
+      description: description,
+      movieGenre: movieGenre,
+      creator: localStorage.getItem("email"),
+      releaseDate: releaseDate,
+      createDate: month + " " + date.getDate() + " , " + date.getFullYear(),
+    };
+    try {
+      await addMovie(movie);
+      onSuccess();
+    } catch (e) {
+      onError(e);
+    }
   };
 
   return loading ? (

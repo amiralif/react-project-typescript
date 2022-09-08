@@ -1,10 +1,14 @@
-import React, { MutableRefObject, useEffect, useState } from "react";
-import { toast } from "react-toastify";
+import React, { useEffect, useState } from "react";
+import { Id, toast } from "react-toastify";
 import classes from "./Authenticate.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { register, login } from "../../store";
+// import { register, login } from "../../store";
+import { login, automaticLogout } from "../../features/loginSlice";
+import { register } from "../../features/registerSlice";
+
 import { useNavigate } from "react-router-dom";
 import Loading from "../Loading";
+import { AppDispatch } from "../../store";
 
 function Authenticate() {
   // VARIABLES
@@ -14,9 +18,9 @@ function Authenticate() {
   const [passwordConf, setPasswordConf] = useState("");
   const [isLoading, setLoading] = useState(false);
 
-  const toastIdRegister:any= React.useRef(null);
+  const toastIdRegister: any = React.useRef(null);
 
-  const dispatch:any = useDispatch();
+  const dispatch: AppDispatch = useDispatch();
 
   const navigate = useNavigate();
 
@@ -40,12 +44,14 @@ function Authenticate() {
 
   // REGISTER
   const {
-    loading: registerLoading,
-    error: registerError,
-    data: registerData,
-  } = useSelector((store:any) => store.register);
+    status: registerStatus,
 
-  const registerForm = (e: { preventDefault: () => void; }) => {
+    data: registerData,
+  } = useSelector(
+    (store: { register: { status: string; data: string } }) => store.register
+  );
+
+  const registerForm = (e: any) => {
     e.preventDefault();
 
     if (!password || !passwordConf) {
@@ -75,12 +81,13 @@ function Authenticate() {
       toastIdRegister.current = toast.loading("REGISTERING, WAIT...", {
         position: "top-right",
       });
-      dispatch(register(email, password));
+      console.log("Authen: ", email, password);
+      dispatch(register({ email, password }));
     }
   };
 
   useEffect(() => {
-    if (registerData === "OK") {
+    if (registerStatus === "success") {
       toast.update(toastIdRegister.current, {
         render: "REGISTERED SUCCESSFULLY!",
         type: "success",
@@ -95,9 +102,9 @@ function Authenticate() {
       });
       buttonHandle();
     }
-    if (registerError) {
+    if (registerStatus === "failed") {
       toast.update(toastIdRegister.current, {
-        render: registerError,
+        render: registerData,
         type: "error",
         delay: 1000,
         autoClose: 2000,
@@ -109,17 +116,19 @@ function Authenticate() {
         isLoading: false,
       });
     }
-  }, [registerData, registerError]);
+  }, [registerData, registerStatus]);
 
   // LOGIN
 
   const {
-    loading: loginLoading,
-    error: loginError,
-    data: loginData,
-  } = useSelector((store:any) => store.login);
+    status: loginStatus,
 
-  const loginForm = (e: { preventDefault: () => void; }) => {
+    data: loginData,
+  } = useSelector(
+    (store: { login: { status: string; data: string } }) => store.login
+  );
+
+  const loginForm = (e: any) => {
     e.preventDefault();
     if (!password) {
       toast.error("PLS Enter Password !", {
@@ -134,12 +143,12 @@ function Authenticate() {
       });
     } else {
       setLoading(true);
-      dispatch(login(email, password));
+      dispatch(login({ email, password }));
     }
   };
 
   useEffect(() => {
-    if (loginData) {
+    if (loginStatus === "success") {
       toast.success("LOGIN SUCCESSFULLY!", {
         autoClose: 3000,
         hideProgressBar: false,
@@ -150,11 +159,12 @@ function Authenticate() {
         progress: undefined,
       });
       setLoading(false);
+      dispatch(automaticLogout(parseInt(localStorage.getItem("exp") || "")));
       navigate("/movies");
     }
-    if (loginError) {
+    if (loginStatus === "failed") {
       setLoading(false);
-      toast.error(loginError, {
+      toast.error(loginData, {
         position: "top-right",
         autoClose: 2000,
         hideProgressBar: false,
@@ -164,7 +174,7 @@ function Authenticate() {
         progress: undefined,
       });
     }
-  }, [loginData, loginError]);
+  }, [loginData, loginStatus]);
 
   return (
     <div className={`${classes.wrapper}`}>

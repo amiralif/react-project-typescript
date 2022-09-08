@@ -1,23 +1,22 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useParams } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { movieList, updateMovie } from "../../store";
 import MovieFrom from "./MovieForm";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import Loading from "../Loading";
+import {
+  useUpdateMovieMutation,
+  useMovieQuery,
+} from "../../services/moviesApi";
 
 const UpdateMovieComponent = () => {
-  const dispatch :any= useDispatch();
-  const { movieId }:any = useParams();
+  const { movieId }: any = useParams();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
 
-  const editMovie = useSelector((state:any) => state.movies[movieId]);
+  const { data: editMovie, isSuccess } = useMovieQuery(movieId);
 
-  // useEffect(() => {
-  //   dispatch(movieList(movieId));
-  // }, [dispatch, movieId]);
+  const [updateMovie] = useUpdateMovieMutation();
 
   const onSuccess = () => {
     setLoading(false);
@@ -33,7 +32,7 @@ const UpdateMovieComponent = () => {
     navigate("/movies");
   };
 
-  const onError = (e:any) => {
+  const onError = (e: any) => {
     setLoading(false);
     if (e.message === "Network Error") {
       toast.error(e.message, {
@@ -58,19 +57,26 @@ const UpdateMovieComponent = () => {
     }
   };
 
-  const formSubmit = (name:any, descriptions:any, movieGenre:any, releaseDate:any) => {
+  const formSubmit = async (
+    name: any,
+    descriptions: any,
+    movieGenre: any,
+    releaseDate: any
+  ) => {
     setLoading(true);
-    dispatch(
-      updateMovie(
-        movieId,
-        name,
-        descriptions,
-        movieGenre,
-        releaseDate,
-        onSuccess,
-        onError
-      )
-    );
+    const movie = {
+      movieId,
+      name,
+      descriptions,
+      movieGenre,
+      releaseDate,
+    };
+    try {
+      await updateMovie(movie);
+      onSuccess();
+    } catch (e) {
+      onError(e);
+    }
   };
 
   return loading ? (
