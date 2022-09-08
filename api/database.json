@@ -10,7 +10,7 @@
       "id": 1
     },
     {
-      "name": "dororo2",
+      "name": "dororo",
       "description": "asdadasdasd2",
       "creator": "bruno@email.com",
       "releaseDate": [
@@ -39,29 +39,6 @@
       "movieGenre": "Action",
       "createDate": "Aug 31 , 2022",
       "id": 4
-    },
-    {
-      "name": "ttt2",
-      "description": "ttts",
-      "movieGenre": "Drama",
-      "creator": "brunoaa@email.com",
-      "releaseDate": [
-        "2022-09-09T20:24:00.000Z"
-      ],
-      "createDate": "Sep 9 , 2022",
-      "id": 5,
-      "descriptions": "ttts"
-    },
-    {
-      "name": "asd",
-      "description": "asd",
-      "movieGenre": "Documentary",
-      "creator": "bruno@email.com",
-      "releaseDate": [
-        "2022-09-14T19:30:00.000Z"
-      ],
-      "createDate": "Sep 9 , 2022",
-      "id": 6
     }
   ]
 }
