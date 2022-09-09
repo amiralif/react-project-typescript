@@ -111,7 +111,7 @@ export const checkAuthenticateStatus =
   };
 
 export const automaticLogout =
-  (expireTime: number) => (dispatch: Dispatch<PayloadAction>) =>{
+  (expireTime: number) => (dispatch: Dispatch<PayloadAction>) => {
     console.log("AUTO");
     console.log(expireTime);
     const milliSecondsToActive =

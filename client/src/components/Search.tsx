@@ -1,8 +1,7 @@
 import { useState } from "react";
 import classes from "../css/Navbar.module.css";
 
-
-const Search = (props: { search: (value: string) => void,val:string }) => {
+const Search = (props: { search: (value: string) => void; val: string }) => {
   const [value, setValue] = useState(props.val);
 
   return (

@@ -12,7 +12,6 @@ export const moviesApi = createApi({
         headers: { authorization: `Bearer ${localStorage.getItem("token")}` },
         providesTags: ["Movie"],
       }),
-      
     }),
     movie: builder.query({
       query: (movieId) => ({
@@ -21,7 +20,6 @@ export const moviesApi = createApi({
         headers: { authorization: `Bearer ${localStorage.getItem("token")}` },
         providesTags: ["Movie"],
       }),
-      
     }),
     addMovie: builder.mutation({
       query: (movie) => ({

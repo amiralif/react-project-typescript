@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { useMoviesQuery } from "../../services/moviesApi";
 import classes from "../../css/MovieList.module.css";
 
-const MovieListComponent = (props: {isSearch:boolean,search:string}) => {
+const MovieListComponent = (props: { isSearch: boolean; search: string }) => {
   const { data } = useMoviesQuery(localStorage.getItem("token"));
   const movieList = useMoviesQuery(localStorage.getItem("token"));
 

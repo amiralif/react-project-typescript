@@ -1,4 +1,3 @@
-import React from "react";
 import classes from "../css/notFound.module.css";
 
 function NotFound() {

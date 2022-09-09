@@ -20,7 +20,7 @@ const DeleteMovieComponent = () => {
   const [isModalOpen, setModalOpen] = useState(true);
 
   const { movieId } = useParams();
-  const { data, isSuccess } = useMovieQuery(movieId);
+  const { data } = useMovieQuery(movieId);
 
   const onSuccess = () => {
     setLoading(false);

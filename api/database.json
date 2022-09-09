@@ -13,9 +13,7 @@
       "name": "dororo",
       "description": "asdadasdasd2",
       "creator": "bruno@email.com",
-      "releaseDate": [
-        "2022-08-11T21:23:00.000Z"
-      ],
+      "releaseDate": ["2022-08-11T21:23:00.000Z"],
       "movieGenre": "Action",
       "createDate": "Aug 31 , 2022",
       "id": 2
@@ -24,9 +22,7 @@
       "name": "avengers",
       "description": " asdasdasdasdasfdasf",
       "creator": "bruno@email.com",
-      "releaseDate": [
-        "2022-08-26T21:24:00.000Z"
-      ],
+      "releaseDate": ["2022-08-26T21:24:00.000Z"],
       "movieGenre": "Action",
       "createDate": "Aug 31 , 2022",
       "id": 3

@@ -18,7 +18,7 @@ function Authenticate() {
   const [passwordConf, setPasswordConf] = useState("");
   const [isLoading, setLoading] = useState(false);
 
-  const toastIdRegister= React.useRef<Id|null>(null);
+  const toastIdRegister = React.useRef<Id | null>(null);
 
   const dispatch: AppDispatch = useDispatch();
 
@@ -88,7 +88,7 @@ function Authenticate() {
 
   useEffect(() => {
     if (registerStatus === "success") {
-      toast.update(toastIdRegister.current||"", {
+      toast.update(toastIdRegister.current || "", {
         render: "REGISTERED SUCCESSFULLY!",
         type: "success",
         autoClose: 2000,
@@ -103,7 +103,7 @@ function Authenticate() {
       buttonHandle();
     }
     if (registerStatus === "failed") {
-      toast.update(toastIdRegister.current||"", {
+      toast.update(toastIdRegister.current || "", {
         render: registerData,
         type: "error",
         delay: 1000,

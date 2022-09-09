@@ -7,7 +7,7 @@ interface RegisterTypes {
   data: PayloadAction | null | string | boolean;
 }
 
-export const register:any = createAsyncThunk(
+export const register: any = createAsyncThunk(
   "register",
   async (
     { email, password }: { email: string; password: string },
@@ -26,7 +26,6 @@ export const register:any = createAsyncThunk(
       if (e.message === "Network Error") {
         return Promise.reject("Network Lost!!");
       } else {
-        // login.rejected( e.response.data.message)
         return Promise.reject(e.response.data.message);
       }
     }
